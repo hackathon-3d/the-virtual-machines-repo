@@ -1,5 +1,6 @@
 package net.c0ffee.tailgatr.fragments;
 
+import net.c0ffee.tailgatr.R;
 import net.c0ffee.tailgatr.data.TailgateDatabase;
 import net.c0ffee.tailgatr.data.TailgateProvider;
 import net.c0ffee.tailgatr.interfaces.TailgateFragmentCommunicator;
@@ -13,17 +14,37 @@ import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 
 public class FoodListFragment extends ListFragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
 	private SimpleCursorAdapter mAdapter;
 	TailgateFragmentCommunicator mActivity;
 	
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+	private View mHeaderView;
+	
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		View list_root = inflater.inflate(android.R.layout.list_content, null);
+		
+		mHeaderView = inflater.inflate(R.layout.tailgate_header, null);
+		return list_root;
+	}
+	
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+		mActivity = (TailgateFragmentCommunicator)getActivity();
+		getListView().setBackgroundColor(Color.parseColor("#3B3C55"));
+		this.getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+		
+		TextView text = (TextView) mHeaderView.findViewById(R.id.header_text);
+		text.setText("What to bring?");
+		getListView().addHeaderView(mHeaderView);
 		
 		String[] uiBindFrom = { TailgateDatabase.COLUMN_ITEM_NAME };
 		int[] uiBindTo = { android.R.id.text1 };
@@ -33,15 +54,7 @@ public class FoodListFragment extends ListFragment implements LoaderManager.Load
 											android.R.layout.simple_list_item_checked, 
 											null, uiBindFrom, uiBindTo, 
 											CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
-		
 		setListAdapter(mAdapter);
-	}
-	
-	public void onActivityCreated(Bundle savedInstanceState) {
-		super.onActivityCreated(savedInstanceState);
-		mActivity = (TailgateFragmentCommunicator)getActivity();
-		getListView().setBackgroundColor(Color.parseColor("#3B3C55"));
-		this.getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 	}
 
 	public Loader<Cursor> onCreateLoader(int id, Bundle args) {
