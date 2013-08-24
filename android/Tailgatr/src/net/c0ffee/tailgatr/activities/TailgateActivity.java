@@ -9,11 +9,9 @@ import net.c0ffee.tailgatr.data.Tailgate;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
 
 public class TailgateActivity extends ListActivity {
 

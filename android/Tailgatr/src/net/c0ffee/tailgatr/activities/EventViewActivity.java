@@ -1,6 +1,13 @@
 package net.c0ffee.tailgatr.activities;
 
+import java.util.ArrayList;
+
 import net.c0ffee.tailgatr.R;
+import net.c0ffee.tailgatr.adapters.EventViewItemAdapter;
+import net.c0ffee.tailgatr.data.EventItem;
+import net.c0ffee.tailgatr.data.User;
+import android.app.ActionBar;
+import android.app.ActionBar.Tab;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
@@ -10,10 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ScrollView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.app.ActionBar;
-import android.app.ActionBar.Tab;
 
 public class EventViewActivity extends Activity  {
 
@@ -30,6 +34,8 @@ public class EventViewActivity extends Activity  {
 			text.setText("This is a test!!!");
 			scroller.addView(text);
 			return scroller;
+			
+			
 		}
 		
 	}
@@ -38,8 +44,16 @@ public class EventViewActivity extends Activity  {
 		public void onCreate(Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);
 	
-			SimpleAdapter adapter = new SimpleAdapter(getActivity(), data, resource, from, to)
-			this.setListAdapter(adapter)
+			ArrayList<EventItem> items = new ArrayList<EventItem>();
+			items.add(new EventItem(0, "item title!", "desc1", "food",
+			new User(0, "dougnd@gmail.com", "doug", "")));
+			items.add(new EventItem(0, "item title2!", "desc2", "food",
+					new User(0, "dougnd@gmail.com", "doug", "")));
+			items.add(new EventItem(0, "item title2!", "desc2", "food",
+					null));
+			
+			EventViewItemAdapter a = new EventViewItemAdapter(getActivity(), items);
+			setListAdapter(a);
 		}
 		
 	}
