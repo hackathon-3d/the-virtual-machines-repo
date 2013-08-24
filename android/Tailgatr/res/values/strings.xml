@@ -6,6 +6,9 @@
    	<string name="no_tailgates">No Tailgates</string>
    	<string name="new_tailgate">New Tailgate</string>
    	<string name="admin">Admin</string>
+   	<string name="no_internet">No Internet Connection</string>
+    <string name="check_internet">Check your network connection, then try again.</string>
+    <string name="ok">OK</string>
    	
    	<!-- Tailgate Edit Activity -->
    	<string name="info">Info</string>
@@ -13,6 +16,9 @@
    	<string name="food">Food</string>
    	<string name="save">Save</string>
    	<string name="cancel">Cancel</string>
+   	<string name="new_food">New Food/Beverage</string>
+   	<string name="name">Name</string>
+   	<string name="invalid_name">Invalid name</string>
    	
    	<!-- Login Activity -->
    	<string name="signing_in">Signing in&#8230;</string>

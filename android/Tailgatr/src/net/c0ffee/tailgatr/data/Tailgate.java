@@ -1,18 +1,18 @@
 package net.c0ffee.tailgatr.data;
 
-import java.util.Date;
+import java.io.Serializable;
 
-public class Tailgate {
+public class Tailgate implements Serializable {
+	private static final long serialVersionUID = -2932923298366486641L;
+	
 	private long _id;
 	private String title;
-	private Date date;
 	private String description;
 	private boolean owner;
-	public Tailgate(long _id, String title, Date date, String description,boolean owner) {
+	public Tailgate(long _id, String title, String description,boolean owner) {
 		super();
 		this._id = _id;
 		this.title = title;
-		this.date = date;
 		this.description = description;
 		this.owner = owner;
 	}
@@ -27,12 +27,6 @@ public class Tailgate {
 	}
 	public void setTitle(String title) {
 		this.title = title;
-	}
-	public Date getDate() {
-		return date;
-	}
-	public void setDate(Date date) {
-		this.date = date;
 	}
 	public String getDescription() {
 		return description;
