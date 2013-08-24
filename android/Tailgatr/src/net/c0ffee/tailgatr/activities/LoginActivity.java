@@ -1,6 +1,8 @@
 package net.c0ffee.tailgatr.activities;
 
 import net.c0ffee.tailgatr.R;
+import net.c0ffee.tailgatr.async.LoginTask;
+import net.c0ffee.tailgatr.data.User;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,15 +10,17 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 public class LoginActivity extends Activity implements OnClickListener {
 
 	// UI references
-	EditText mEmailField;
-	EditText mPasswordField;
-	Button mLoginButton;
-	Button mRegisterButton;
-	
+	private EditText mEmailField;
+	private EditText mPasswordField;
+	private Button mLoginButton;
+	private Button mRegisterButton;
+	private ProgressBar mProgressBar;
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -29,6 +33,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 		mPasswordField = (EditText) findViewById(R.id.login_password_field);
 		mLoginButton = (Button) findViewById(R.id.login_button);
 		mRegisterButton = (Button) findViewById(R.id.register_button);
+		mProgressBar = (ProgressBar) findViewById(R.id.progress_bar);
 		
 		// Set the onClick handlers
 		mLoginButton.setOnClickListener(this);
@@ -59,12 +64,42 @@ public class LoginActivity extends Activity implements OnClickListener {
 				return;
 			}
 			
+			// Create a dummy user
+			User logger = new User(0, email, null, password);
 			
+			// Create and execute the login task
+			LoginTask login = new LoginTask(this);
+			this.showProgress();
+			login.execute(logger);
 			
 		} else if (v.getId() == mRegisterButton.getId()) {
 			Intent register = new Intent(this, RegisterActivity.class);
 			startActivity(register);
 		}
+	}
+	
+	/**
+	 * Prevents the user from exiting the login activity manually
+	 */
+	public void onBackPressed() {
+	    return;
+	}
+	
+	public void loginFailedWithError(String message) {
+		this.showButtons();
+		Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+	}
+	
+	public void showProgress() {
+		mLoginButton.setVisibility(View.INVISIBLE);
+		mRegisterButton.setVisibility(View.INVISIBLE);
+		mProgressBar.setVisibility(View.VISIBLE);
+	}
+	
+	public void showButtons() {
+		mLoginButton.setVisibility(View.VISIBLE);
+		mRegisterButton.setVisibility(View.VISIBLE);
+		mProgressBar.setVisibility(View.INVISIBLE);
 	}
 	
 	public final static boolean isValidEmail(CharSequence target) {
