@@ -50,15 +50,45 @@ sub generate_ddl {
    my $class = shift;
 
    $class->db->query(
-      'CREATE TABLE users (id       INTEGER      NOT NULL PRIMARY KEY AUTO_INCREMENT,
-                           email    VARCHAR(254) UNIQUE NOT NULL,
-                           pwhash   VARCHAR(256) NOT NULL,
-                           nickname VARCHAR(64)  NOT NULL);'
+      'CREATE TABLE users  (id          INTEGER      NOT NULL PRIMARY KEY AUTO_INCREMENT,
+                            email       VARCHAR(254) UNIQUE NOT NULL,
+                            pwhash      VARCHAR(256) NOT NULL,
+                            token       VARCHAR(32),
+                            name        VARCHAR(64)  NOT NULL);'
+   );
+      
+   $class->db->query(
+      'CREATE TABLE events (id          INTEGER      NOT NULL PRIMARY KEY AUTO_INCREMENT,
+                            title       VARCHAR(255) UNIQUE NOT NULL,
+                            owner_id    INTEGER      NOT NULL,
+                            description TEXT,
+                            date        DATETIME,
+                            FOREIGN KEY (owner_id) REFERENCES users(id) ON DELETE CASCADE);'
+   );
+   
+   $class->db->query(
+      'CREATE TABLE items   (id         INTEGER      NOT NULL PRIMARY KEY AUTO_INCREMENT,
+                            title       VARCHAR(255) UNIQUE NOT NULL);'
    );
 
    $class->db->query(
-      "INSERT INTO users(email, pwhash, nickname) VALUES('foo\@bar.com', 'asdf', 'John Doe');"
+      'CREATE TABLE event_invitees (event_id INTEGER NOT NULL,
+                                    user_id  INTEGER NOT NULL,
+                                    FOREIGN KEY (event_id) REFERENCES events(id) ON DELETE CASCADE,
+                                    FOREIGN KEY (user_id)  REFERENCES users(id)  ON DELETE CASCADE,
+                                    PRIMARY KEY (event_id, user_id));'
    );
+
+   $class->db->query(
+      'CREATE TABLE event_items    (event_id INTEGER NOT NULL,
+                                    item_id  INTEGER NOT NULL,
+                                    user_id  INTEGER,
+                                    FOREIGN KEY (event_id) REFERENCES events(id) ON DELETE CASCADE,
+                                    FOREIGN KEY (item_id)  REFERENCES items(id)  ON DELETE CASCADE,
+                                    FOREIGN KEY (user_id)  REFERENCES users(id)  ON DELETE CASCADE,
+                                    PRIMARY KEY (event_id, item_id));'
+   );
+
 }
 
 1;
