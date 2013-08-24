@@ -38,12 +38,12 @@ public class MasterFoodFragment extends ListFragment implements LoaderManager.Lo
 		
 		getListView().setBackgroundColor(Color.parseColor("#3B3C55"));
 		
-		String[] uiBindFrom = { TailgateDatabase.COLUMN_ITEM_NAME };
-		int[] uiBindTo = { android.R.id.text1 };
+		String[] uiBindFrom = { TailgateDatabase.COLUMN_ITEM_NAME, TailgateDatabase.COLUMN_ITEM_PRICE };
+		int[] uiBindTo = { android.R.id.text1, android.R.id.text2 };
 		
 		getLoaderManager().initLoader(0x02, null, this);
 		mAdapter = new SimpleCursorAdapter(getActivity().getApplicationContext(), 
-											android.R.layout.simple_list_item_1, 
+											android.R.layout.simple_list_item_2, 
 											null, uiBindFrom, uiBindTo, 
 											CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
 		
