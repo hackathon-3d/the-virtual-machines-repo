@@ -41,5 +41,6 @@
    	<!-- Event View Activity -->
    	<string name="info_tab">Info</string>
    	<string name="items_tab">Items</string>
+   	<string name="invitees_tab">Items</string>
 
 </resources>

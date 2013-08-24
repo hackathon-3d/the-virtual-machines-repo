@@ -13,10 +13,10 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.app.ListFragment;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -62,6 +62,22 @@ public class EventViewActivity extends Activity  {
 		
 	}
 	
+	public static class InviteesFragment extends ListFragment {
+		public void onCreate(Bundle savedInstanceState) {
+			super.onCreate(savedInstanceState);
+	
+			ArrayList<User> items = new ArrayList<User>();
+			items.add(new User(0, "dougnd@gmail.com", "doug", ""));
+			items.add(new User(0, "dougnd@gmail.com", "doug2", ""));
+			items.add(new User(0, "dougnd@gmail.com", "doug3", ""));
+			items.add(new User(0, "dougnd@gmail.com", "doug4", ""));
+			
+			ArrayAdapter<User> a = new ArrayAdapter<User>(getActivity(), android.R.layout.simple_list_item_1, items );
+			setListAdapter(a);
+		}
+		
+	}
+	
 	
 
 	
@@ -88,6 +104,11 @@ public class EventViewActivity extends Activity  {
         // items tab
         tab = ab.newTab().setText(R.string.items_tab)
 				.setTabListener(new MyTabListener(this, ItemsFragment.class.getName()));
+        ab.addTab(tab);
+        
+        // invitees tab
+        tab = ab.newTab().setText(R.string.invitees_tab)
+				.setTabListener(new MyTabListener(this, InviteesFragment.class.getName()));
         ab.addTab(tab);
         
         /*tab = ab.newTab().setText(R.string.itemFragment)
