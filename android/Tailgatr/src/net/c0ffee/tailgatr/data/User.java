@@ -37,4 +37,7 @@ public class User {
 		this._id = _id;
 	}
 	
+	public String toString() {
+		return nickname;
+	}
 }

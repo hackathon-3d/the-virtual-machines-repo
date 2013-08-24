@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 
 public class TailgateActivity extends ListActivity {
 
@@ -24,12 +25,12 @@ public class TailgateActivity extends ListActivity {
 		
 		// Check to see if there is a user logged in
 		String token = getSharedPreferences(Constants.APP_PREFIX, MODE_PRIVATE).getString("AUTH", null);
+		
 		if (token == null) {
 			Intent authenticate = new Intent(this, LoginActivity.class);
 			startActivity(authenticate);
 		}
-		
-		
+
 	}
 	
 	public boolean onCreateOptionsMenu(Menu menu) {

@@ -5,6 +5,7 @@
     <!-- Tailgate Activity -->
    	<string name="no_tailgates">No Tailgates</string>
    	<string name="new_tailgate">New Tailgate</string>
+   	<string name="admin">Admin</string>
    	
    	<!-- Login Activity -->
    	<string name="signing_in">Signing in&#8230;</string>
