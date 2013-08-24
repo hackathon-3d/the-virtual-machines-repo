@@ -11,11 +11,13 @@
                android:layout_height="0dip"
                android:background="#FFFFFF"
                android:layout_weight="1"
-               android:drawSelectorOnTop="false"/>
+               android:drawSelectorOnTop="false"
+               />
 
      <TextView android:id="@android:id/empty"
                android:layout_width="match_parent"
                android:layout_height="match_parent"
                android:background="#FF0000"
-               android:text="@string/no_tailgates"/>
+               android:text="@string/no_tailgates"
+               />
  </LinearLayout>
