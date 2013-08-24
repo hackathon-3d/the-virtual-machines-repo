@@ -1,13 +1,21 @@
 package net.c0ffee.tailgatr.activities;
 
+import java.util.ArrayList;
+
 import net.c0ffee.tailgatr.R;
 import net.c0ffee.tailgatr.data.Constants;
+import net.c0ffee.tailgatr.data.Tailgate;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 public class TailgateActivity extends ListActivity {
 
+	private ArrayList<Tailgate> mTailgates;
+	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
@@ -20,5 +28,23 @@ public class TailgateActivity extends ListActivity {
 			Intent authenticate = new Intent(this, LoginActivity.class);
 			startActivity(authenticate);
 		}
+		
+		
+	}
+	
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.tailgate_menu, menu);
+	    return true;
+	}
+	
+	public boolean OnOptionsItemSelected(MenuItem item) {
+	    switch (item.getItemId()) {
+	        case R.id.menu_item_add:
+	            //newGame();
+	            return true;
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
 	}
 }

@@ -1,12 +1,16 @@
 package net.c0ffee.tailgatr.activities;
 
 import net.c0ffee.tailgatr.R;
+import net.c0ffee.tailgatr.async.RegisterTask;
+import net.c0ffee.tailgatr.data.User;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 public class RegisterActivity extends Activity implements OnClickListener {
 
@@ -16,6 +20,7 @@ public class RegisterActivity extends Activity implements OnClickListener {
 	private EditText mPasswordField;
 	private EditText mPasswordConfirmField;
 	private Button mRegisterButton;
+	private ProgressBar mProgressBar;
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -29,6 +34,7 @@ public class RegisterActivity extends Activity implements OnClickListener {
 		mPasswordField = (EditText) findViewById(R.id.register_password_field);
 		mPasswordConfirmField = (EditText) findViewById(R.id.register_password_repeat_field);
 		mRegisterButton = (Button) findViewById(R.id.register_button);
+		mProgressBar = (ProgressBar) findViewById(R.id.progress_bar);
 		
 		mRegisterButton.setOnClickListener(this);
 	}
@@ -75,6 +81,29 @@ public class RegisterActivity extends Activity implements OnClickListener {
 				mPasswordConfirmField.setError(getResources().getString(R.string.do_not_match));
 				return;
 			}
+			
+			// Create the user object
+			User newUser = new User(0, email, nickname, password);
+			
+			// Create and execute the registration task
+			RegisterTask register = new RegisterTask(this);
+			this.showProgress();
+			register.execute(newUser);
 		}
+	}
+	
+	public void registrationFailedWithError(String message) {
+		this.showButtons();
+		Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+	}
+	
+	public void showProgress() {
+		mRegisterButton.setVisibility(View.INVISIBLE);
+		mProgressBar.setVisibility(View.VISIBLE);
+	}
+	
+	public void showButtons() {
+		mRegisterButton.setVisibility(View.VISIBLE);
+		mProgressBar.setVisibility(View.INVISIBLE);
 	}
 }

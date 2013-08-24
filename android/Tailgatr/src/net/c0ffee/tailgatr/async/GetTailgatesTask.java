@@ -1,28 +1,28 @@
 package net.c0ffee.tailgatr.async;
 
-import net.c0ffee.tailgatr.activities.LoginActivity;
+import net.c0ffee.tailgatr.activities.TailgateActivity;
 import net.c0ffee.tailgatr.data.User;
 import android.os.AsyncTask;
 
-public class LoginTask extends AsyncTask<User, Void, String>{
+public class GetTailgatesTask extends AsyncTask<User, Void, Boolean> {
 
-	private LoginActivity mActivity;
-
+	private TailgateActivity mActivity;
+	
 	private String mErrorMessage;
 	
-	public LoginTask(LoginActivity activity) {
+	public GetTailgatesTask(TailgateActivity activity) {
 		mActivity = activity;
 		mErrorMessage = null;
 	}
 	
-	protected String doInBackground(User... params) {
+	protected Boolean doInBackground(User... params) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	protected void onPostExecute (String token) {
 		if (token == null) {
-			mActivity.loginFailedWithError(mErrorMessage);
+			// Uh oh
 		} else {
 			
 		}
