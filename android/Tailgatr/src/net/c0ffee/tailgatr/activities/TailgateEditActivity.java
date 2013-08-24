@@ -9,9 +9,13 @@ import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.Toast;
 public class TailgateEditActivity extends Activity implements ActionBar.TabListener {
 
 	private Tab mInfoTab;
@@ -28,6 +32,10 @@ public class TailgateEditActivity extends Activity implements ActionBar.TabListe
 		ActionBar ab = getActionBar();
         ab.setNavigationMode( ActionBar.NAVIGATION_MODE_TABS );
         
+        mInfoFragment = null;
+        mInvitesFragment = null;
+        mFoodFragment = null;
+        
         mInfoTab = ab.newTab().setText(R.string.info).setTabListener(this);
         mInvitesTab = ab.newTab().setText(R.string.invites).setTabListener(this);
         mItemsTab = ab.newTab().setText(R.string.food).setTabListener(this);
@@ -39,27 +47,36 @@ public class TailgateEditActivity extends Activity implements ActionBar.TabListe
 
 	public void onTabSelected(Tab tab, FragmentTransaction ft) {
 		if (tab.equals(mInfoTab)) {
-			mInfoFragment = (TailgateInfoFragment) Fragment.instantiate(this, TailgateInfoFragment.class.getName());
-			ft.add(android.R.id.content, mInfoFragment);
+			if (mInfoFragment == null) {
+				mInfoFragment = (TailgateInfoFragment) Fragment.instantiate(this, TailgateInfoFragment.class.getName());
+				ft.add(android.R.id.content, mInfoFragment);
+			} else {
+				ft.show(mInfoFragment);
+			}
 		} else if (tab.equals(mInvitesTab)) {
-			mInvitesFragment = (TailgateInvitesFragment) Fragment.instantiate(this, TailgateInvitesFragment.class.getName());
-			ft.add(android.R.id.content, mInvitesFragment);
+			if (mInvitesFragment == null) {
+				mInvitesFragment = (TailgateInvitesFragment) Fragment.instantiate(this, TailgateInvitesFragment.class.getName());
+				ft.add(android.R.id.content, mInvitesFragment);
+			} else {
+				ft.show(mInvitesFragment);
+			}
 		} else if (tab.equals(mItemsTab)) {
-			mFoodFragment = (TailgateFoodFragment) Fragment.instantiate(this, TailgateFoodFragment.class.getName());
-			ft.add(android.R.id.content, mFoodFragment);
+			if (mFoodFragment == null) {
+				mFoodFragment = (TailgateFoodFragment) Fragment.instantiate(this, TailgateFoodFragment.class.getName());
+				ft.add(android.R.id.content, mFoodFragment);
+			} else {
+				ft.show(mFoodFragment);
+			}
 		}
 	}
 
 	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
 		if (tab.equals(mInfoTab)) {
-			ft.remove(mInfoFragment);
-			mInfoFragment = null;
+			ft.hide(mInfoFragment);
 		} else if (tab.equals(mInvitesTab)) {
-			ft.remove(mInvitesFragment);
-			mInvitesFragment = null;
+			ft.hide(mInvitesFragment);
 		} else if (tab.equals(mItemsTab)) {
-			ft.remove(mFoodFragment);
-			mFoodFragment = null;
+			ft.hide(mFoodFragment);
 		}
 	}
 	
@@ -74,4 +91,16 @@ public class TailgateEditActivity extends Activity implements ActionBar.TabListe
 	    return true;
 	}
 	
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    switch (item.getItemId()) {
+	        case R.id.menu_item_save:
+	        	Toast.makeText(this, mInfoFragment.getTitle(), Toast.LENGTH_LONG).show();
+	            return true;
+	        case R.id.menu_item_cancel:
+	        	finish();
+	        	return true;
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
+	}
 }
