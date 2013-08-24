@@ -7,6 +7,7 @@ import android.app.AlertDialog;
 import android.app.ListFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -29,6 +30,7 @@ public class TailgateFoodFragment extends ListFragment implements DialogInterfac
 		
 		mFoodItems = new ArrayList<String>();
 		mAdapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_list_item_1, android.R.id.text1, mFoodItems);
+		setListAdapter(mAdapter);
 	}
 	
 	public void onCreateOptionsMenu (Menu menu, MenuInflater inflater) {

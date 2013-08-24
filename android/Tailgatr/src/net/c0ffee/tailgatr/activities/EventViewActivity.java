@@ -38,8 +38,8 @@ public class EventViewActivity extends Activity  {
 		public void onCreate(Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);
 	
-			SimpleAdapter adapter = new SimpleAdapter(getActivity(), data, resource, from, to)
-			this.setListAdapter(adapter)
+			//SimpleAdapter adapter = new SimpleAdapter(getActivity(), data, resource, from, to)
+			//this.setListAdapter(adapter)
 		}
 		
 	}
