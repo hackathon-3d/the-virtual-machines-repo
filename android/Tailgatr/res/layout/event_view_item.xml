@@ -34,7 +34,6 @@
         android:layout_centerVertical="true"
         android:paddingRight="5dp"
         android:visibility="invisible"
-       <!--   android:onClick="onCheckboxClicked"-->
         />
     
  
