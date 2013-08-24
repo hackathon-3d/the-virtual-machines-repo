@@ -22,10 +22,7 @@
         <activity
             android:name="net.c0ffee.tailgatr.activities.TailgateActivity"
             android:label="@string/app_name" >
-            <intent-filter>
-		        <action android:name="android.intent.action.MAIN" />
-		        <category android:name="android.intent.category.LAUNCHER" />
-		    </intent-filter>
+
         </activity>
         
         <activity
@@ -41,7 +38,10 @@
         <activity
             android:name="net.c0ffee.tailgatr.activities.EventViewActivity"
             android:label="@string/app_name" >
-
+            <intent-filter>
+		        <action android:name="android.intent.action.MAIN" />
+		        <category android:name="android.intent.category.LAUNCHER" />
+		    </intent-filter>
 		</activity>
 
         <activity

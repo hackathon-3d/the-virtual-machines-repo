@@ -19,12 +19,24 @@
         android:id="@+id/description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/title"
         android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
+        android:paddingTop="10dp"
         android:paddingLeft="5dp"
         android:text="@string/app_name"
-        android:textSize="20sp"
+        android:textSize="15sp"
         android:textStyle="normal"
+        />
+    <TextView 
+        android:id="@+id/provider_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:paddingRight="5dp"
+        android:textSize="15sp"
+        android:textColor="#D3D3D3"
+        android:visibility="invisible"
         />
     
     <CheckBox android:id="@+id/checkbox"

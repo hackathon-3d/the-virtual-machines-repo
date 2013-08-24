@@ -32,11 +32,11 @@ public class TailgateFoodFragment extends ListFragment implements DialogInterfac
 	}
 	
 	public void onCreateOptionsMenu (Menu menu, MenuInflater inflater) {
-		inflater.inflate(R.menu.food_fragment_menu, menu);
+		//inflater.inflate(R.menu.food_fragment_menu, menu);
 	}
 	
 	public boolean onOptionsItemSelected(MenuItem item) {
-		if (item.getItemId() == R.id.menu_item_add_food) {
+		/*if (item.getItemId() == R.id.menu_item_add_food) {
 			AlertDialog.Builder builder = new AlertDialog.Builder(this.getActivity(), AlertDialog.THEME_HOLO_DARK);
 			builder.setView(LayoutInflater.from(this.getActivity()).inflate(R.layout.dialog_food, null))
 				.setTitle(R.string.new_food)
@@ -44,19 +44,19 @@ public class TailgateFoodFragment extends ListFragment implements DialogInterfac
 				.setNegativeButton(R.string.cancel, this);
 			mCreateDialog = builder.create();
 			mCreateDialog.show();
-		}
+		}*/
 		return true;
 	}
 
 	public void onClick(DialogInterface dialog, int which) {
 		if (dialog.equals(mCreateDialog) && which == DialogInterface.BUTTON_POSITIVE) {
-			String text = ((EditText)mCreateDialog.findViewById(R.id.food_name_field)).getText().toString();
+			/*String text = ((EditText)mCreateDialog.findViewById(R.id.food_name_field)).getText().toString();
 			if (text.length() < 1) {
 				Toast.makeText(getActivity(), R.string.invalid_name, Toast.LENGTH_LONG).show();
 			} else {
 				mFoodItems.add(text);
 				mAdapter.notifyDataSetChanged();
-			}
+			}*/
 		}
 	}
 }

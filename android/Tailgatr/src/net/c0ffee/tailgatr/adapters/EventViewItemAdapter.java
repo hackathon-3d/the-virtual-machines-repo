@@ -4,22 +4,29 @@ import java.util.List;
 
 import net.c0ffee.tailgatr.R;
 import net.c0ffee.tailgatr.data.EventItem;
+import net.c0ffee.tailgatr.data.User;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.TextView;
 
 
 public class EventViewItemAdapter extends ArrayAdapter<EventItem> {
-	public EventViewItemAdapter(Context context, List<EventItem> objects) {
+	private User currentUser;
+	
+	public EventViewItemAdapter(Context context, List<EventItem> objects, User currentUser) {
 		super(context, R.layout.event_view_item, objects);
+		this.currentUser = currentUser;
 	}
 	
 	public View getView(int position, View convertView, ViewGroup parent) {
-		EventItem item = this.getItem(position);
+		final EventItem item = this.getItem(position);
 		
 		LayoutInflater inflater = (LayoutInflater)getContext()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -31,20 +38,37 @@ public class EventViewItemAdapter extends ArrayAdapter<EventItem> {
         
         TextView title = (TextView) listItemView.findViewById(R.id.title);
         TextView description = (TextView) listItemView.findViewById(R.id.description);
+        TextView provider = (TextView) listItemView.findViewById(R.id.provider_name);
         CheckBox checkbox = (CheckBox) listItemView.findViewById(R.id.checkbox);
 		
         title.setText(item.getTitle());
         description.setText(item.getDescription());
         if (item.getProvider() == null) {
         	checkbox.setVisibility(View.VISIBLE);
+        	provider.setVisibility(View.INVISIBLE);
         	checkbox.setChecked(false);
         }
-        else if (item.getProvider().getNickname() == "Doug") {
+        else if (item.getProvider().get_id() == currentUser.get_id()) {
         	checkbox.setVisibility(View.VISIBLE);
+        	provider.setVisibility(View.INVISIBLE);
         	checkbox.setChecked(true);
         } else {
         	checkbox.setVisibility(View.INVISIBLE);
+        	provider.setVisibility(View.VISIBLE);
+        	provider.setText(item.getProvider().getNickname());
         }
+        Log.d("SKDFJASLKD", "test -- " + item.getTitle());
+        checkbox.setOnCheckedChangeListener(new OnCheckedChangeListener()
+        {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
+            {
+            	Log.d("SALKDFJA", item.getTitle() + isChecked);
+                if ( isChecked )
+                {
+                    
+                }
+            }
+        });
         
 		return listItemView;
 	}

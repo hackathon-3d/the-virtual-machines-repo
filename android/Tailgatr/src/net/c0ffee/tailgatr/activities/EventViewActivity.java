@@ -13,6 +13,7 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.app.ListFragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,10 +50,13 @@ public class EventViewActivity extends Activity  {
 			new User(0, "dougnd@gmail.com", "doug", "")));
 			items.add(new EventItem(0, "item title2!", "desc2", "food",
 					new User(0, "dougnd@gmail.com", "doug", "")));
-			items.add(new EventItem(0, "item title2!", "desc2", "food",
+			items.add(new EventItem(0, "item title3!", "desc3", "food",
 					null));
+			items.add(new EventItem(0, "item title4!", "desc4", "food",
+					new User(50, "dougnd@gmail.com", "Doug", "")));
 			
-			EventViewItemAdapter a = new EventViewItemAdapter(getActivity(), items);
+			
+			EventViewItemAdapter a = new EventViewItemAdapter(getActivity(), items, new User(50, "dougnd@gmail.com", "Doug", "") );
 			setListAdapter(a);
 		}
 		
