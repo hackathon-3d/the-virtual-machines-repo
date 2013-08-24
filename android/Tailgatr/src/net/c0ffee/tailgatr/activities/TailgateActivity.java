@@ -5,6 +5,7 @@ import net.c0ffee.tailgatr.R;
 import net.c0ffee.tailgatr.data.TailgateDatabase;
 import net.c0ffee.tailgatr.data.TailgateProvider;
 import net.c0ffee.tailgatr.fragments.FoodListFragment;
+import net.c0ffee.tailgatr.fragments.MasterTailgateFragment;
 import net.c0ffee.tailgatr.fragments.TailgateInfoFragment;
 import net.c0ffee.tailgatr.interfaces.TailgateFragmentCommunicator;
 import android.app.ActionBar;
