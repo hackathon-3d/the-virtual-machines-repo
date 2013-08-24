@@ -105,7 +105,7 @@ public class FoodEditActivity extends Activity {
 	      String title = cursor.getString(cursor.getColumnIndexOrThrow(TailgateDatabase.COLUMN_ITEM_NAME));
 	      int price = cursor.getInt(cursor.getColumnIndex(TailgateDatabase.COLUMN_ITEM_PRICE));
 	      
-	      mPicker.setValue(price);
+	      mPicker.setValue(price + 1);
 	      mTitleField.setText(title);
 	      
 	      cursor.close();
