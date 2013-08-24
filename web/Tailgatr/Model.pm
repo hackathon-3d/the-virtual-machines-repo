@@ -23,7 +23,7 @@ sub init {
          {
             RaiseError         => 1,
             PrintError         => 0,
-            ShowErrorStatement => 1
+            ShowErrorStatement => 1 
          }) or die DBIx::Simple->error;
 
       $DB->abstract = SQL::Abstract->new(
