@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import net.c0ffee.tailgatr.R;
 import net.c0ffee.tailgatr.adapters.EventViewItemAdapter;
+import net.c0ffee.tailgatr.async.GetEventViewInfoTask;
 import net.c0ffee.tailgatr.data.EventItem;
 import net.c0ffee.tailgatr.data.User;
 import android.app.ActionBar;
@@ -17,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -24,16 +26,29 @@ public class EventViewActivity extends Activity  {
 
 	// UI references
 	
+	
 	public static class InfoFragment extends Fragment {
+		private GetEventViewInfoTask task;
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
 			// Inflate the layout for this fragment
 			//return inflater.inflate(R.layout.example_fragment, container, false);
 			
 			ScrollView scroller = new ScrollView(getActivity());
-			TextView text = new TextView(getActivity());
-			text.setText("This is a test!!!");
-			scroller.addView(text);
+			LinearLayout layout = new LinearLayout(getActivity());
+			TextView title = new TextView(getActivity());
+			title.setTextSize(30);
+			title.setText("Loading...");
+			TextView description = new TextView(getActivity());
+			description.setText("The information is loading. Please wait.");
+			//scroller.addView(title);
+			layout.addView(title);
+			layout.addView(description);
+			layout.setOrientation(LinearLayout.VERTICAL);
+			scroller.addView(layout);
+			
+			task = new GetEventViewInfoTask(title, description, 0);
+			task.execute("token_here");
 			return scroller;
 			
 			
