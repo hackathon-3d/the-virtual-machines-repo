@@ -3,6 +3,7 @@ package Tailgatr::Model;
 use strict;
 use warnings;
 use DBIx::Simple;
+use DBIx::Error;
 use SQL::Abstract;
 use Carp qw/croak/;
 use Mojo::Loader;
@@ -23,7 +24,8 @@ sub init {
          {
             RaiseError         => 1,
             PrintError         => 0,
-            ShowErrorStatement => 1
+            HandleError        => DBIx::Error->HandleError,
+            ShowErrorStatement => 1 
          }) or die DBIx::Simple->error;
 
       $DB->abstract = SQL::Abstract->new(

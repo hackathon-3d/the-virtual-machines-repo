@@ -6,7 +6,7 @@ use base qw/Mojo::Base/;
 
 sub select {
    my $class = shift;
-   my @columns = qw/id email nickname/;
+   my @columns = qw/id email name token/;
    Tailgatr::Model->db->select($class->table_name, \@columns, @_);
 }
 
@@ -14,7 +14,7 @@ sub insert {
    my $class = shift;
    my $db = Tailgatr::Model->db;
    $db->insert($class->table_name, @_) or die $db->error();
-   $db->last_insert_id('','','') or die $db->error();
+   $db->last_insert_id('','','','','') or die $db->error();
 }
 
 sub update {
