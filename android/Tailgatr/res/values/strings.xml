@@ -1,5 +1,23 @@
 <resources>
 
     <string name="app_name">Tailgatr</string>
+    
+    <!-- Tailgate Activity -->
+   	<string name="no_tailgates">No Tailgates</string>
+   	
+   	<!-- Login Activity -->
+   	<string name="signing_in">Signing in&#8230;</string>
+   	<string name="email">Email</string>
+   	<string name="password">Password</string>
+   	<string name="login">Login</string>
+   	<string name="register">Register</string>
+   	<string name="invalid_email">Invalid email</string>
+   	<string name="invalid_password">Invalid password</string>
+   	
+   	<!-- Register Activity -->
+   	<string name="nickname">Nickname</string>
+   	<string name="confirm_password">Confirm password</string>
+   	<string name="invalid_nickname">Invalid nickname</string>
+   	<string name="do_not_match">Passwords do not match</string>
 
 </resources>
