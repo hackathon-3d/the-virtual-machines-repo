@@ -48,9 +48,9 @@ public class EventViewActivity extends Activity  {
 			ArrayList<EventItem> items = new ArrayList<EventItem>();
 			items.add(new EventItem(0, "item title!", "desc1", "food",
 			new User(0, "dougnd@gmail.com", "doug", "")));
-			items.add(new EventItem(0, "item title2!", "desc2", "food",
+			items.add(new EventItem(0, "item title2!", "", "food",
 					new User(0, "dougnd@gmail.com", "doug", "")));
-			items.add(new EventItem(0, "item title3!", "desc3", "food",
+			items.add(new EventItem(0, "item title3!", "dekjs s alksj asks s kldjalksj s skjs  sflkas s fksja sdkfjs askf a sd fsjdfalsk  fs dfjaksj falskdj as fksj sc3", "food",
 					null));
 			items.add(new EventItem(0, "item title4!", "desc4", "food",
 					new User(50, "dougnd@gmail.com", "Doug", "")));

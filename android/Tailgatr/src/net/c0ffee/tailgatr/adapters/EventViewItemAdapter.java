@@ -25,7 +25,7 @@ public class EventViewItemAdapter extends ArrayAdapter<EventItem> {
 		this.currentUser = currentUser;
 	}
 	
-	public View getView(int position, View convertView, ViewGroup parent) {
+	public View getView(final int position, View convertView, ViewGroup parent) {
 		final EventItem item = this.getItem(position);
 		
 		LayoutInflater inflater = (LayoutInflater)getContext()
@@ -57,12 +57,12 @@ public class EventViewItemAdapter extends ArrayAdapter<EventItem> {
         	provider.setVisibility(View.VISIBLE);
         	provider.setText(item.getProvider().getNickname());
         }
-        Log.d("SKDFJASLKD", "test -- " + item.getTitle());
+
         checkbox.setOnCheckedChangeListener(new OnCheckedChangeListener()
         {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
             {
-            	Log.d("SALKDFJA", item.getTitle() + isChecked);
+            	Log.d("SALKDFJA", item.getTitle() + isChecked + position);
                 if ( isChecked )
                 {
                     
