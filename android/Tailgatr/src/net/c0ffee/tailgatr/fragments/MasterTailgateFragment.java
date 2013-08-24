@@ -34,7 +34,7 @@ public class MasterTailgateFragment extends ListFragment implements LoaderManage
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		
-		getListView().setBackgroundColor(Color.BLUE);
+		getListView().setBackgroundColor(Color.parseColor("#3B3C55"));
 		
 		// Data to display
 		String[] uiBindFrom = { TailgateDatabase.COLUMN_TAILGATE_TITLE, TailgateDatabase.COLUMN_TAILGATE_LOCATION };
@@ -71,7 +71,7 @@ public class MasterTailgateFragment extends ListFragment implements LoaderManage
 	}
 	
 	public void onListItemClick(ListView l, View v, int position, long id) {
-		Intent i = new Intent(this.getActivity(), TailgatesActivity.class);
+		Intent i = new Intent(this.getActivity(), TailgateActivity.class);
 	    Uri eventUri = Uri.parse(TailgateProvider.CONTENT_TAILGATE_URI + "/" + id);
 	    i.putExtra(TailgateProvider.CONTENT_TAILGATE_TYPE, eventUri);
 	    startActivity(i);

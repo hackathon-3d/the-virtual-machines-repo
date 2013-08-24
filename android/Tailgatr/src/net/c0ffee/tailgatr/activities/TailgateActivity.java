@@ -42,8 +42,8 @@ public class TailgateActivity extends Activity implements ActionBar.TabListener,
         mInfoTab = ab.newTab().setText(R.string.info).setTabListener(this);
         mFoodTab = ab.newTab().setText(R.string.food).setTabListener(this);
         
-        //ab.addTab(mInfoTab);
-        //ab.addTab(mFoodTab);
+        ab.addTab(mInfoTab);
+        ab.addTab(mFoodTab);
         
         mUri = null;
 	    Bundle extras = getIntent().getExtras();
@@ -89,6 +89,10 @@ public class TailgateActivity extends Activity implements ActionBar.TabListener,
 
 	
 	public void onTabReselected(Tab tab, FragmentTransaction ft) {
+	
+	}
+
+	public void onTabSelected(Tab tab, FragmentTransaction ft) {
 		if (tab.equals(mInfoTab)) {
 			if (mInfoFragment == null) {
 				mInfoFragment = (TailgateInfoFragment) Fragment.instantiate(this, TailgateInfoFragment.class.getName());
@@ -106,18 +110,16 @@ public class TailgateActivity extends Activity implements ActionBar.TabListener,
 		}
 	}
 
-	public void onTabSelected(Tab tab, FragmentTransaction ft) {
-		if (tab.equals(mInfoTab)) {
-			ft.hide(mInfoFragment);
-		} else if (tab.equals(mFoodTab)) {
-			ft.hide(mFoodFragment);
-		}
-	}
-
-	@Override
 	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
-		// TODO Auto-generated method stub
-		
+		if (tab.equals(mInfoTab)) {
+			if (mInfoFragment != null) {
+				ft.hide(mInfoFragment);
+			}
+		} else if (tab.equals(mFoodTab)) {
+			if (mFoodFragment != null) {
+				ft.hide(mFoodFragment);
+			}
+		}
 	}
 
 	public Uri getTailgateUri() {

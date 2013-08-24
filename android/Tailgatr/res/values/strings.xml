@@ -14,6 +14,7 @@
     <string name="check_internet">Check your network connection, then try again.</string>
     <string name="ok">OK</string>
     <string name="your_tailgates">You\'re tailgates</string>
+    <string name="price">Price estimate:</string>
    	
    	<!-- Tailgate Edit Activity -->
    	<string name="info">Info</string>
@@ -27,7 +28,7 @@
    	<string name="title">Title</string>
    	<string name="description">Description</string>
    	<string name="creating_tailgate">Creating tailgate</string>
-   	<string name="what_about">What\'s this about\?</string>
+   	<string name="what_about">What\'s the occasion\?</string>
    	<string name="whos_coming">Who\'s coming\?</string>
    	<string name="what_to_eat">What to bring\?</string>
    	

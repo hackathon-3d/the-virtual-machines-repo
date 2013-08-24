@@ -10,6 +10,7 @@ import android.content.ContentValues;
 import android.content.CursorLoader;
 import android.content.Loader;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.CursorAdapter;
@@ -39,7 +40,7 @@ public class FoodListFragment extends ListFragment implements LoaderManager.Load
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		mActivity = (TailgateFragmentCommunicator)getActivity();
-		
+		getListView().setBackgroundColor(Color.parseColor("#3B3C55"));
 		this.getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 	}
 

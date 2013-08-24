@@ -68,7 +68,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
 		// TODO Auto-generated method stub
 		
 	}
-	
+	/*
 	public boolean onCreateOptionsMenu(Menu menu) {
 	    MenuInflater inflater = getMenuInflater();
 	    inflater.inflate(R.menu.main_activity_menu, menu);
@@ -84,4 +84,5 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
 	            return super.onOptionsItemSelected(item);
 	    }
 	}
+	*/
 }

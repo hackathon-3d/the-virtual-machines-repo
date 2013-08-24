@@ -1,29 +1,28 @@
 package net.c0ffee.tailgatr.fragments;
 
-
 import net.c0ffee.tailgatr.R;
+import net.c0ffee.tailgatr.activities.FoodEditActivity;
 import net.c0ffee.tailgatr.data.TailgateDatabase;
 import net.c0ffee.tailgatr.data.TailgateProvider;
 import android.app.AlertDialog;
 import android.app.ListFragment;
 import android.app.LoaderManager;
-import android.content.ContentValues;
 import android.content.CursorLoader;
-import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.CursorAdapter;
-import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
-import android.widget.Toast;
 
-public class MasterFoodFragment extends ListFragment implements LoaderManager.LoaderCallbacks<Cursor>, DialogInterface.OnClickListener {
+public class MasterFoodFragment extends ListFragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
 	private SimpleCursorAdapter mAdapter;
 	
@@ -37,7 +36,7 @@ public class MasterFoodFragment extends ListFragment implements LoaderManager.Lo
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		
-		getListView().setBackgroundColor(Color.BLUE);
+		getListView().setBackgroundColor(Color.parseColor("#3B3C55"));
 		
 		String[] uiBindFrom = { TailgateDatabase.COLUMN_ITEM_NAME };
 		int[] uiBindTo = { android.R.id.text1 };
@@ -57,30 +56,17 @@ public class MasterFoodFragment extends ListFragment implements LoaderManager.Lo
 	
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if (item.getItemId() == R.id.menu_item_add_food) {
-			AlertDialog.Builder builder = new AlertDialog.Builder(this.getActivity(), AlertDialog.THEME_HOLO_DARK);
-			builder.setView(LayoutInflater.from(this.getActivity()).inflate(R.layout.dialog_food, null))
-				.setTitle(R.string.new_food)
-				.setPositiveButton(R.string.ok, this)
-				.setNegativeButton(R.string.cancel, this);
-			mCreateDialog = builder.create();
-			mCreateDialog.show();
+			Intent i = new Intent(this.getActivity(), FoodEditActivity.class);
+	        startActivity(i);
 		}
 		return true;
 	}
-
-	public void onClick(DialogInterface dialog, int which) {
-		if (dialog.equals(mCreateDialog) && which == DialogInterface.BUTTON_POSITIVE) {
-			String text = ((EditText)mCreateDialog.findViewById(R.id.food_name_field)).getText().toString();
-			if (text.length() < 1) {
-				Toast.makeText(getActivity(), R.string.invalid_name, Toast.LENGTH_LONG).show();
-			} else {
-				ContentValues values = new ContentValues();
-				values.put(TailgateDatabase.COLUMN_ITEM_NAME, text);
-				values.put(TailgateDatabase.COLUMN_ITEM_PRICE, 1);
-				getActivity().getContentResolver().insert(TailgateProvider.CONTENT_ITEM_URI, values);
-				Toast.makeText(getActivity(), "Item Saved", Toast.LENGTH_SHORT).show();
-			}
-		}
+	
+	public void onListItemClick(ListView l, View v, int position, long id) {
+		Intent i = new Intent(this.getActivity(), FoodEditActivity.class);
+	    Uri todoUri = Uri.parse(TailgateProvider.CONTENT_ITEM_URI + "/" + id);
+	    i.putExtra(TailgateProvider.CONTENT_ITEM_TYPE, todoUri);
+	    startActivity(i);
 	}
 	
 	public Loader<Cursor> onCreateLoader(int id, Bundle args) {
