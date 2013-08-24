@@ -31,7 +31,14 @@ public class TailgateAdapter extends ArrayAdapter<Tailgate> {
         TextView text1 = (TextView) listItemView.findViewById(R.id.text1);
         TextView text2 = (TextView) listItemView.findViewById(R.id.text2);
 		
-		return parent;
-		
+        text1.setText(tailgate.getTitle());
+        if (tailgate.isOwner()) {
+        	text2.setVisibility(View.VISIBLE);
+        	text2.setText(R.string.admin);
+        } else {
+        	text2.setVisibility(View.INVISIBLE);
+        }
+        
+		return listItemView;
 	}
 }

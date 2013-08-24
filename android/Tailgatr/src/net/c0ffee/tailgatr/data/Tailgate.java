@@ -7,12 +7,14 @@ public class Tailgate {
 	private String title;
 	private Date date;
 	private String description;
-	public Tailgate(long _id, String title, Date date, String description) {
+	private boolean owner;
+	public Tailgate(long _id, String title, Date date, String description,boolean owner) {
 		super();
 		this._id = _id;
 		this.title = title;
 		this.date = date;
 		this.description = description;
+		this.owner = owner;
 	}
 	public long get_id() {
 		return _id;
@@ -38,7 +40,13 @@ public class Tailgate {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	public boolean isOwner() {
+		return owner;
+	}
 	
+	public void setOwner(boolean owner) {
+		this.owner = owner;
+	}
 	public String toString() {
 		return title;
 	}
