@@ -19,6 +19,9 @@
    	<string name="new_food">New Food/Beverage</string>
    	<string name="name">Name</string>
    	<string name="invalid_name">Invalid name</string>
+   	<string name="title">Title</string>
+   	<string name="description">Description</string>
+   	<string name="creating_tailgate">Creating tailgate</string>
    	
    	<!-- Login Activity -->
    	<string name="signing_in">Signing in&#8230;</string>

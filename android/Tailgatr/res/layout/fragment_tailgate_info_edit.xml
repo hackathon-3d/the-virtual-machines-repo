@@ -7,6 +7,18 @@
         android:id="@+id/tailgate_title_field"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:inputType="textCapWords"
+        android:hint="@string/title"
+        />
+    
+    <EditText 
+        android:id="@+id/tailgate_description_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tailgate_title_field"
+        android:singleLine="false"
+        android:hint="@string/description"
         />
 
 </RelativeLayout>
