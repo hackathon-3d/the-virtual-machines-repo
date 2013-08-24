@@ -21,7 +21,7 @@ public class TailgateActivity extends ListActivity {
 
 	private ArrayList<Tailgate> mTailgates;
 	
-	private ArrayAdapter<Tailgate> mAdapter;
+	private TailgateAdapter mAdapter;
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -32,10 +32,10 @@ public class TailgateActivity extends ListActivity {
 		// Check to see if there is a user logged in
 		String token = getSharedPreferences(Constants.APP_PREFIX, MODE_PRIVATE).getString("AUTH", null);
 		
-		//if (token == null) {
-		//	Intent authenticate = new Intent(this, LoginActivity.class);
-		//	startActivity(authenticate);
-		//}
+		if (token == null) {
+			Intent authenticate = new Intent(this, LoginActivity.class);
+			startActivity(authenticate);
+		}
 		
 		mTailgates = new ArrayList<Tailgate>();
 		mAdapter = new TailgateAdapter(this, mTailgates);
