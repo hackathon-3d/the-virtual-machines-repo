@@ -34,5 +34,9 @@
    	<string name="confirm_password">Confirm password</string>
    	<string name="invalid_nickname">Invalid nickname</string>
    	<string name="do_not_match">Passwords do not match</string>
+   	
+   	<!-- Event View Activity -->
+   	<string name="info_tab">Info</string>
+   	<string name="items_tab">Items</string>
 
 </resources>
