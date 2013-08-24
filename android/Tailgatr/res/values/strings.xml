@@ -3,16 +3,21 @@
     <string name="app_name">Tailgatr</string>
     
     <!-- Tailgate Activity -->
+    <string name="location">Location</string>
+    <string name="delete">Delete</string>
+    <string name="about">About</string>
+    <string name="tailgates">Tailgates</string>
    	<string name="no_tailgates">No Tailgates</string>
    	<string name="new_tailgate">New Tailgate</string>
    	<string name="admin">Admin</string>
    	<string name="no_internet">No Internet Connection</string>
     <string name="check_internet">Check your network connection, then try again.</string>
     <string name="ok">OK</string>
+    <string name="your_tailgates">You\'re tailgates</string>
    	
    	<!-- Tailgate Edit Activity -->
    	<string name="info">Info</string>
-   	<string name="invites">Invites</string>
+   	<string name="friends">Friends</string>
    	<string name="food">Food</string>
    	<string name="save">Save</string>
    	<string name="cancel">Cancel</string>
@@ -22,6 +27,9 @@
    	<string name="title">Title</string>
    	<string name="description">Description</string>
    	<string name="creating_tailgate">Creating tailgate</string>
+   	<string name="what_about">What\'s this about\?</string>
+   	<string name="whos_coming">Who\'s coming\?</string>
+   	<string name="what_to_eat">What to bring\?</string>
    	
    	<!-- Login Activity -->
    	<string name="signing_in">Signing in&#8230;</string>

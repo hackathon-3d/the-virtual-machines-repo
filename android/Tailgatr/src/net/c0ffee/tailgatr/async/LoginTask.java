@@ -12,7 +12,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import net.c0ffee.tailgatr.activities.LoginActivity;
-import net.c0ffee.tailgatr.activities.TailgateActivity;
+import net.c0ffee.tailgatr.activities.TailgatesActivity;
 import net.c0ffee.tailgatr.data.Constants;
 import net.c0ffee.tailgatr.data.User;
 import android.content.Context;
@@ -49,7 +49,7 @@ public class LoginTask extends AsyncTask<User, Void, String>{
 		    OutputStream out = conn.getOutputStream();
 		    out.write(json.toString().getBytes());
 		    out.close();
-
+		    
 		    int responseCode = conn.getResponseCode();
 		    
 		    if (responseCode == HttpURLConnection.HTTP_OK) {
@@ -64,7 +64,7 @@ public class LoginTask extends AsyncTask<User, Void, String>{
 	            JSONObject in = new JSONObject(response.toString());
 	            return in.get("token").toString();
 		    } else {
-		    	
+		    	mErrorMessage = conn.getResponseMessage();
 		    }
 		    
 		} catch (MalformedURLException e) {
@@ -85,10 +85,10 @@ public class LoginTask extends AsyncTask<User, Void, String>{
 		if (token == null) {
 			mActivity.loginFailedWithError(mErrorMessage);
 		} else {
-			mActivity.getSharedPreferences(Constants.APP_PREFIX, Context.MODE_PRIVATE).edit().putString("AUTH_TOKEN", token);
-			mActivity.getSharedPreferences(Constants.APP_PREFIX, Context.MODE_PRIVATE).edit().putString("EMAIL", mUser.getEmail());
+			mActivity.getSharedPreferences(Constants.APP_PREFIX, Context.MODE_PRIVATE).edit().putString("AUTH_TOKEN", token).commit();
+			mActivity.getSharedPreferences(Constants.APP_PREFIX, Context.MODE_PRIVATE).edit().putString("EMAIL", mUser.getEmail()).commit();
 			
-			Intent i = new Intent(mActivity, TailgateActivity.class);
+			Intent i = new Intent(mActivity, TailgatesActivity.class);
 			mActivity.startActivity(i);
 		}
 	}

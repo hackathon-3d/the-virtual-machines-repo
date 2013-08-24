@@ -37,7 +37,7 @@ public class TailgateEditActivity extends Activity implements ActionBar.TabListe
         mFoodFragment = null;
         
         mInfoTab = ab.newTab().setText(R.string.info).setTabListener(this);
-        mInvitesTab = ab.newTab().setText(R.string.invites).setTabListener(this);
+        mInvitesTab = ab.newTab().setText(R.string.friends).setTabListener(this);
         mItemsTab = ab.newTab().setText(R.string.food).setTabListener(this);
         
         ab.addTab(mInfoTab);
@@ -94,7 +94,7 @@ public class TailgateEditActivity extends Activity implements ActionBar.TabListe
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    switch (item.getItemId()) {
 	        case R.id.menu_item_save:
-	        	Toast.makeText(this, mInfoFragment.getTitle(), Toast.LENGTH_LONG).show();
+	        	//Toast.makeText(this, mInfoFragment.getTitle(), Toast.LENGTH_LONG).show();
 	            return true;
 	        case R.id.menu_item_cancel:
 	        	finish();

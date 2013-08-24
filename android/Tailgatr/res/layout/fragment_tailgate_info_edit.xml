@@ -3,22 +3,53 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
+    <TextView
+        android:id="@+id/header_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:paddingBottom="10dp"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:background="#352D49"
+        android:text="@string/what_about"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp"
+        android:textStyle="normal" 
+        />
+    
     <EditText 
         android:id="@+id/tailgate_title_field"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+       	android:layout_below="@id/header_text"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:singleLine="true"
         android:inputType="textCapWords"
         android:hint="@string/title"
         />
     
     <EditText 
-        android:id="@+id/tailgate_description_field"
+        android:id="@+id/tailgate_location_field"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tailgate_title_field"
-        android:singleLine="false"
-        android:hint="@string/description"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:singleLine="true"
+        android:hint="@string/location"
+        />
+    
+    <DatePicker 
+        android:id="@+id/tailgate_edit_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tailgate_location_field"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
         />
 
 </RelativeLayout>
