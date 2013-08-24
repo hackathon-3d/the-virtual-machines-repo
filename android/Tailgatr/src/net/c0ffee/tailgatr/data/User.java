@@ -1,6 +1,10 @@
 package net.c0ffee.tailgatr.data;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
+	private static final long serialVersionUID = -1688027765746856174L;
+	
 	private long _id;
 	private String email;
 	private String nickname;

@@ -7,7 +7,10 @@ import net.c0ffee.tailgatr.adapters.TailgateAdapter;
 import net.c0ffee.tailgatr.data.Constants;
 import net.c0ffee.tailgatr.data.Tailgate;
 import android.app.ListActivity;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -18,6 +21,8 @@ import android.widget.ArrayAdapter;
 public class TailgateActivity extends ListActivity {
 
 	private ArrayList<Tailgate> mTailgates;
+	
+	private ArrayAdapter<Tailgate> mAdapter;
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -34,8 +39,8 @@ public class TailgateActivity extends ListActivity {
 		//}
 		
 		mTailgates = new ArrayList<Tailgate>();
-		TailgateAdapter adapter = new TailgateAdapter(this, mTailgates);
-		setListAdapter(adapter);
+		mAdapter = new TailgateAdapter(this, mTailgates);
+		setListAdapter(mAdapter);
 	}
 	
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -53,5 +58,14 @@ public class TailgateActivity extends ListActivity {
 	        default:
 	            return super.onOptionsItemSelected(item);
 	    }
+	}
+	
+	private boolean isOnline() {
+	    ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+	    NetworkInfo netInfo = cm.getActiveNetworkInfo();
+	    if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+	        return true;
+	    }
+	    return false;
 	}
 }
